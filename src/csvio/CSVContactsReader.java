@@ -36,8 +36,12 @@ public class CSVContactsReader {
 					e.printStackTrace();
 				}
 			}
-		} catch (IOException ex) { ex.printStackTrace(System.err);
-			target.addAll(null); //null addition to target to indicate problem
+		} catch (IOException ex) {
+			
+			// wir machen hier nichts - wenn keine Daten da sind dann zeigen wir auch nichts!
+			
+			//ex.printStackTrace(System.err);
+			//target.add(null); //null addition to target to indicate problem
 		}
 		
 		return target.toArray(new ObservableContactDetails[target.size()]);

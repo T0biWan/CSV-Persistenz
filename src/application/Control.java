@@ -42,7 +42,7 @@ public class Control {
 		this.fuelleObservableData();
 		
 		/* ruft die toString- Methode von AddressBook auf */
-		print.setOnMouseClicked(e-> print());
+		print.setOnMouseClicked(e -> System.out.println(aBook));
 		
 		/* soll einen neuen Kontakt kreieren */
 		add.setOnMouseClicked(e-> this.addNewContact());
@@ -50,43 +50,23 @@ public class Control {
 		this.errorText = errorText;
 	}
 	
-	private void print() {
-		System.out.println(aBook); 
-		
-		try {
-			CSVContactsWriter.writeEntityList(aBook.search(""), "kontakte.csv", ":");
-		} catch (IOException | ParameterStringIsEmptyException | DetailsNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
 	/*
 	 * füllt alle Kontakte in die observableArrayList
 	 * */
 	
 	/*
-	 * Diese Methode lässt sich alle Kontakte aus AddressBook geben.
-	 * Da die Search-Methode ein Array zurückgibt,
-	 * müssen die Kontakte zwischengespeichert werden.
-	 * Diese werden dann der ObservableList hinzugefügt.  
+	 * GEÄNDERT: Diese Methode sucht nach unserer kontakte.csv und liest sie aus.
+	 * Sollte keine Datei vorhanden sein oder die Datei leer, zeigen wir eine leere Liste! 
 	 */
 	
 	private void fuelleObservableData() {
+		
 		ObservableContactDetails[] contactDetails = null;
 
 		contactDetails = CSVContactsReader.readEntityList("kontakte.csv",":");
 
-		if(contactDetails.length == 0){
-			/* wir füllen unser AddressBook mit DummyDaten*/
-			this.fuelleAddressBook();
-			try {
-				contactDetails = aBook.search("");
-			} catch (DetailsNotFoundException | ParameterStringIsEmptyException e1) {
-				System.out.println(e1.getMessage());
-			}
-		}else{
+		// Wir schauen nach ob etwas zurüch gegeben wurde
+		if(contactDetails != null && contactDetails.length > 0){
 			for(ObservableContactDetails contact : contactDetails){
 				try {
 					aBook.addDetails(contact);
@@ -96,10 +76,10 @@ public class Control {
 					e.printStackTrace();
 				}
 			}
-		}
-		
-		for(ObservableContactDetails contact : contactDetails){
-			 data.add(contact);
+
+			for(ObservableContactDetails contact : contactDetails){
+				 data.add(contact);
+			}
 		}
 		
 	}
