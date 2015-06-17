@@ -28,16 +28,19 @@ public class CSVContactsReader {
 		try {
 			List<String> lines = Files.readAllLines(source);
 			for (String line : lines){
+				
 				try {
 					target.add(new ObservableContactDetails(line.split(splitter)));
 				} catch (ContactFormatException e) {
 					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
 					e.printStackTrace();
 				}
 			}
 		} catch (IOException ex) { ex.printStackTrace(System.err);
 			target.addAll(null); //null addition to target to indicate problem
 		}
+		
 		return target.toArray(new ObservableContactDetails[target.size()]);
 	}
 
