@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import binärIO.BinärAppointmentReader;
+import binärIO.BinärAppointmentWriter;
 import bufferedIO.BufferedAppointmentReader;
 import bufferedIO.BufferedAppointmentWriter;
 import csvio.CSVAppointmentReader;
@@ -45,6 +47,15 @@ public class Main {
 			//Buffered lesen
 			BufferedAppointmentReader bReader = new BufferedAppointmentReader();
 			collection = bReader.readAppointment("BufferedTermine", "::");
+//			System.out.println(collection);
+			
+			//Binär schreiben
+			BinärAppointmentWriter binWriter = new BinärAppointmentWriter();
+			binWriter.writeAppointment(collection, "BinärTermine", "::");
+			
+			//Binär lesen
+			BinärAppointmentReader binReader = new BinärAppointmentReader();
+			collection = binReader.readAppointment("BinärTermine", "::");
 			System.out.println(collection);
 			
 			

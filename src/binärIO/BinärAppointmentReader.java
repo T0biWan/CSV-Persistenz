@@ -1,9 +1,10 @@
-package bufferedIO;
+package binärIO;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,16 +14,16 @@ import exceptions.StringIsEmptyException;
 import exceptions.WertebereichException;
 import exceptions.ZeitenKollisionException;
 
-public class BufferedAppointmentReader {
-
-	public List<Appointment> readAppointment(String filename, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
-		String path = "output/" + filename + ".txt";
+public class BinärAppointmentReader {
+	public List<Appointment> readAppointment(String dateiname, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
+		String path = "output/" + dateiname + ".bin";
 		List<Appointment> inputCollection = new ArrayList();
-		BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream (path)));
-		String lesen = input.readLine();
-		String [] attribute = lesen.split(splitter);
+		DataInputStream input = new DataInputStream(new BufferedInputStream(new FileInputStream(path)));
+		
+		String inputString = input.readUTF();
+		String[] attribute = inputString.split(splitter);
 		int index = 0;
-		for(int i = 0; i < attribute.length / 6; i++) {
+		for(int i = 0; i < attribute.length / 6; i++) {	
 			Appointment appointment = new Appointment();
 			appointment.setDatum(attribute[index++]);
 			appointment.setTitel(attribute[index++]);
