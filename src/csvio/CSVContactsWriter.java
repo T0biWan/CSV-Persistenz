@@ -14,7 +14,7 @@ import classes.ObservableContactDetails;
 public class CSVContactsWriter {
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
-	/* Helferklasse, die uns ermöglicht, filename als String zu übergeben - ruft dann die untere writeEntityList() aus */
+	/* Helferklasse, die uns ermöglicht, filename als String zu übergeben - ruft dann die untere writeEntityList() auf */
 	public static void writeEntityList(ObservableContactDetails[] contacts, String filename, String splitter) throws IOException {
 		Path path = Paths.get(filename);
 		writeEntityList(contacts, path, splitter);
