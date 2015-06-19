@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bufferedIO.BufferedAppointmentReader;
+import bufferedIO.BufferedAppointmentWriter;
 import csvio.CSVAppointmentReader;
 import csvio.CSVAppointmentWriter;
 import exceptions.FormatException;
@@ -25,7 +27,7 @@ public class Main {
 			
 			//Collection
 			List<Appointment> collection = new ArrayList();
-			for(int i = 0; i < 3; i++) {
+			for(int i = 0; i < 5; i++) {
 				collection.add(termin);
 			}
 			writer.writeAppointment(collection, "TerminCollection", "::");
@@ -33,6 +35,16 @@ public class Main {
 			//Lesen
 			CSVAppointmentReader reader = new CSVAppointmentReader();
 			collection = reader.readAppointment("TerminCollection", "::");
+//			System.out.println(collection);
+			
+			
+			//Buffered Schreiben
+			BufferedAppointmentWriter bWriter = new BufferedAppointmentWriter();
+			bWriter.writeAppointment(collection, "BufferedTermine", "::");
+			
+			//Buffered lesen
+			BufferedAppointmentReader bReader = new BufferedAppointmentReader();
+			collection = bReader.readAppointment("BufferedTermine", "::");
 			System.out.println(collection);
 			
 			
