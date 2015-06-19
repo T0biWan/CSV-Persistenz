@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import csv.Pokemon;
+
 
 public class PokemonBinärWriter {
 	public void schreiben(String dateiname, Pokemon p) {

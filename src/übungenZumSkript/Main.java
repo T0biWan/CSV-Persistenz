@@ -1,9 +1,5 @@
 package übungenZumSkript;
-import csv.Pokemon;
-import binär.BinReader;
-import binär.BinWriter;
-import binär.PokemonBinärReader;
-import binär.PokemonBinärWriter;
+
 
 
 

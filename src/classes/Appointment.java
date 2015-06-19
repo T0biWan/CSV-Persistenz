@@ -161,7 +161,7 @@ public class Appointment {
 		}
 	}
 	
-	// maximal 10 Zeichen für TT.MM.YYYY
+	// maximal 10 Zeichen für TT/MM/YYYY
  	public boolean testeDatumFormat (String datum) {
 		if(datum.contains("/") && (datum.length() == 10)) {
 			return true;

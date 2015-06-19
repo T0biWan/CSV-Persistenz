@@ -13,45 +13,44 @@ import classes.Appointment;
 import classes.ObservableContactDetails;
 
 public class CSVAppointmentWriter {
-final static Charset ENCODING = StandardCharsets.UTF_8;
+	// Attribut
+	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
-//	/* Helferklasse, die uns ermöglicht, filename als String zu übergeben - ruft dann die untere writeEntityList() auf */
-//	public static void writeEntityList(ObservableContactDetails[] contacts, String filename, String splitter) throws IOException {
-//		Path path = Paths.get(filename);
-//		writeEntityList(contacts, path, splitter);
-//	}
-//	
-//	/*
-//	 * writeEntityList bekommt als Parameter ein Array von ObservableContactDetails Objekten, 
-//	 * den Pfad wo gespeichert werden soll, und unseren Splitter.
-//	 * Dieses Array wird durchlaufen und pro ObservableContactDetails (also ein einzelner Kontakt) 
-//	 * an die Methode contactAsCSVLine übergeben. contactAsCSVLine gibt uns dann ein String mit unseren splitter zurück
-//	 * und wird in unsere Liste eingetragen.
-//	 * Dann wird diese Liste an Files.write übergeben. 
-//	 * write übernimmt dann das zeilenweise Schreiben in die Datei (path).
-//	 * Jeder Kontakt ist eine Zeile.
-//	 * */
-//	public static void writeEntityList(ObservableContactDetails[] contacts, Path path, String splitter) throws IOException {
-//		
-//		List<String> lines = new ArrayList<>();
-//		for (ObservableContactDetails contact : contacts) {
-//			lines.add(contactAsCSVLine(contact, splitter));
-//		}
-//		Files.write(path,  lines,  ENCODING);
-//	}
-//	
-//	/*
-//	 * contactAsCSVLine bekommt ein einzelnes ObservableContactDetails und liest dieses dank unserer genialen getters aus
-//	 * (Vorname,Nachname,Adresse,Telefonnummer,Mail). Diese werden mit unserem splitter als eine Stringzeile zurückgegeben. 
-//	 * WICHTIG: wir speichern keine Objekte sondern nur Zeilen von Strings.
-//	 * */
-//	private static String contactAsCSVLine(ObservableContactDetails c, String splitter) {
-//		return c.getVorname()+splitter+c.getNachname()+splitter+c.getAdresse()+splitter+c.getTelefonnummer()+splitter+c.getMail();
-//	}
-
-	public void writeAppointment(Appointment appointment, String filename, String splitter) {
-		
+	//Helferklasse, die aus String-Dateinamen Pfad bastelt
+	public void writeAppointment(Appointment appointment, String filename, String splitter) throws IOException {
+		Path path = Paths.get("output/" + filename + ".csv");
+		writeAppointment(appointment, path, splitter);
+	}
+	
+	//Einzelnes Appointment wird geschrieben
+	public void writeAppointment(Appointment appointment, Path path, String splitter) throws IOException {
+		List<String> lines = new ArrayList<>();
+		lines.add(formatAppointmentToCSV(appointment, splitter));
+		Files.write(path, lines, ENCODING);
+	}
+	
+	//Helferklasse für Collection von Appointments
+	public void writeAppointment(List<Appointment> appointment, String filename, String splitter) throws IOException {
+		Path path = Paths.get("output/" + filename + ".csv");
+		writeAppointment(appointment, path, splitter);
+	}
+	
+	//Collection von Appointments wird geschrieben
+	public void writeAppointment(List<Appointment> appointment, Path path, String splitter) throws IOException {
+		List<String> lines = new ArrayList<>();
+		for (Appointment index : appointment) {
+			lines.add(formatAppointmentToCSV(index, splitter));
+		}
+		Files.write(path, lines, ENCODING);
 	}
 
+	// CSV-Formatierung
+	private String formatAppointmentToCSV(Appointment appointment, String splitter) {
+		return appointment.getDatum()+ splitter
+				+ appointment.getTitel() + splitter
+				+ appointment.getStartzeit() + splitter
+				+ appointment.getEndzeit() + splitter
+				+ appointment.getKategorie() + splitter
+				+ appointment.getNotiz();
+	}
 }
-
