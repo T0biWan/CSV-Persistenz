@@ -8,9 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import classes.Appointment;
-import classes.ObservableContactDetails;
 
 public class CSVAppointmentWriter {
 	// Attribut
