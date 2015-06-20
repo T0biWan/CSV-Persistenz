@@ -16,12 +16,18 @@ import exceptions.WertebereichException;
 import exceptions.ZeitenKollisionException;
 
 public class CSVAppointmentReader {
-
+	
+	//Helferklasse, die aus String-Dateinamen einen Pfad bastelt.
+	//Dann wird die zweite Methode aufgerufen die einen Pfad verlangt.
 	public List<Appointment> readAppointment(String filename, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
 		Path path = Paths.get("output/" + filename + ".csv");
 		return readAppointment(path, splitter);
 	}
 	
+	//In eine Collection, die Strings entgegennimmt, wird der gesamte inhalt der Datei eingelesen.
+	//Diese Collection wird mit einer erweiterten for-Schleife durchiteriert.
+	//Jeder Index entspricht, durch die CSV-schreibweise, den Attributen eines Objektes.
+	//Daher wird aus jedem Index ein Appointment erstellt. Dieses Objekt wird einer zweiten Colelction übergeben, die letztendlich der Rückgabewert der Methode ist.
 	public List<Appointment> readAppointment(Path path, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
 		List<Appointment> input = new ArrayList();
 		List<String> readLines = Files.readAllLines(path);

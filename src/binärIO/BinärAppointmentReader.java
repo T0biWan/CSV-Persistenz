@@ -15,6 +15,7 @@ import exceptions.WertebereichException;
 import exceptions.ZeitenKollisionException;
 
 public class BinärAppointmentReader {
+	
 	public List<Appointment> readAppointment(String dateiname, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
 		String path = "output/" + dateiname + ".bin";
 		List<Appointment> inputCollection = new ArrayList();

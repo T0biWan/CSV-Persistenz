@@ -15,12 +15,13 @@ import java.util.List;
 import classes.Appointment;
 
 public class BufferedAppointmentWriter {
+	
 	//Collection von Appointments wird geschrieben
 	public void writeAppointment(List<Appointment> appointment, String filename, String splitter) throws IOException {
 		String path = "output/" + filename + ".txt";
 		BufferedWriter output = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(path)));
 		for (Appointment index : appointment) {
-			output.write(formatAppointmentToCSV(index, "::"));
+			output.write(formatAppointmentToCSV(index, splitter));
 		}
 		output.flush();
 		output.close();
