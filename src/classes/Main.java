@@ -26,6 +26,7 @@ public class Main {
 			
 			CSVAppointmentWriter writer = new CSVAppointmentWriter();
 			writer.writeAppointment(termin, "Termin", "::");
+			System.out.println(termin);
 			
 			//Collection
 			List<Appointment> collection = new ArrayList();
@@ -56,7 +57,7 @@ public class Main {
 			//Binär lesen
 			BinärAppointmentReader binReader = new BinärAppointmentReader();
 			collection = binReader.readAppointment("BinärTermine", "::");
-			System.out.println(collection);
+			//System.out.println(collection);
 			
 			
 		} catch (FormatException | WertebereichException | ZeitenKollisionException | StringIsEmptyException e) {

@@ -10,12 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import classes.Appointment;
 
+
+/*
+ * Writer-Klasse: Nimmt Objekt und schreibt Attribute in eine Textdatei.
+ */
 public class CSVAppointmentWriter {
 	// Attribut
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
 	//Helferklasse, die aus String-Dateinamen einen Pfad bastelt
 	//Dann wird die zweite Methode (Methodenüberladung) aufgerufen die einen Pfad verlangt
+	// Diese Methode ruft die untere Methode auf
 	public void writeAppointment(List<Appointment> appointment, String filename, String splitter) throws IOException {
 		Path path = Paths.get("output/" + filename + ".csv");
 		writeAppointment(appointment, path, splitter);
