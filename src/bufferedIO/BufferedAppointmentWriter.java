@@ -16,7 +16,12 @@ import classes.Appointment;
 
 public class BufferedAppointmentWriter {
 	
-	//Collection von Appointments wird geschrieben
+	//Pfad wird erzeugt
+	//Stream geöffnet
+	//Die übergebene Collection wird durchiteriert
+	//Jeder Index wird formatiert und per Stream in den Speicher geschrieben
+	//Flush schreibt dann aus dem Speicher in die Textdatei.
+	//Dann wird der Stream geschlossen.
 	public void writeAppointment(List<Appointment> appointment, String filename, String splitter) throws IOException {
 		String path = "output/" + filename + ".txt";
 		BufferedWriter output = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(path)));
@@ -28,6 +33,7 @@ public class BufferedAppointmentWriter {
 	}
 
 	//Formatierung
+	//Am Ende eines Objektes kommt ebenfalls das Trennzeichen zum Einsatz, da wir nun Zeilenweise schreiben ermöglicht das uns die Objekte zu unterscheiden.
 	private String formatAppointmentToCSV(Appointment appointment, String splitter) {
 		return appointment.getDatum()+ splitter
 				+ appointment.getTitel() + splitter

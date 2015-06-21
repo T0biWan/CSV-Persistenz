@@ -14,7 +14,12 @@ import exceptions.WertebereichException;
 import exceptions.ZeitenKollisionException;
 
 public class BufferedAppointmentReader {
-
+	
+	//Aus filename wird der pfad generiert.
+	//Es wird ein Stream erstellt der Analog zum BufferedWriter "zusammengesteckt" ist.
+	//Der Inhalt der Textdatei (einzeilig) wird in einen String gelesen und mit dem Splitter, attributweise, in ein Array aufgeteilt.
+	//Aus dem Array-indizes werden Appointment-Objekte erstellt, diese werden in einer Collection gespeichert.
+	//Die Collection ist der Rückgabewert der Methode.
 	public List<Appointment> readAppointment(String filename, String splitter) throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
 		String path = "output/" + filename + ".txt";
 		List<Appointment> inputCollection = new ArrayList();
