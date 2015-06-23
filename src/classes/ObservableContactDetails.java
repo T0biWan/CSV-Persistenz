@@ -108,8 +108,34 @@ public class ObservableContactDetails extends ContactDetails {
    
 		return s.toString();
 	}
-	
-	public static void main(String[] args) {
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ObservableContactDetails that = (ObservableContactDetails) o;
+
+    if (adresse.get() != null ? !adresse.get().equals(that.adresse.get()) : that.adresse.get() != null) return false;
+    if (mail.get() != null ? !mail.get().equals(that.mail.get()) : that.mail.get() != null) return false;
+    if (nachname.get() != null ? !nachname.get().equals(that.nachname.get()) : that.nachname.get() != null) return false;
+    if (telefonnummer.get() != null ? !telefonnummer.get().equals(that.telefonnummer.get()) : that.telefonnummer.get() != null) return false;
+    if (vorname.get() != null ? !vorname.get().equals(that.vorname.get()) : that.vorname.get() != null) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = vorname.get() != null ? vorname.get().hashCode() : 0;
+    result = 31 * result + (nachname.get() != null ? nachname.get().hashCode() : 0);
+    result = 31 * result + (adresse.get() != null ? adresse.get().hashCode() : 0);
+    result = 31 * result + (telefonnummer.get() != null ? telefonnummer.get().hashCode() : 0);
+    result = 31 * result + (mail.get() != null ? mail.get().hashCode() : 0);
+    return result;
+  }
+
+  public static void main(String[] args) {
 		ObservableContactDetails ocd = new ObservableContactDetails();
 		ocd.setVorname("Robert");
 		ocd.setNachname("Dziuba");
