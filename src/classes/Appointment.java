@@ -321,4 +321,31 @@ public class Appointment {
 		}
 		
 	}
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Appointment that = (Appointment) o;
+
+    if (datum.get() != null ? !datum.get().equals(that.datum.get()) : that.datum.get() != null) return false;
+    if (endzeit.get() != null ? !endzeit.get().equals(that.endzeit.get()) : that.endzeit.get() != null) return false;
+    if (kategorie.get() != null ? !kategorie.get().equals(that.kategorie.get()) : that.kategorie.get() != null) return false;
+    if (notiz.get() != null ? !notiz.get().equals(that.notiz.get()) : that.notiz.get() != null) return false;
+    if (startzeit.get() != null ? !startzeit.get().equals(that.startzeit.get()) : that.startzeit.get() != null) return false;
+    if (titel.get() != null ? !titel.get().equals(that.titel.get()) : that.titel.get() != null) return false;
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = datum.get() != null ? datum.get().hashCode() : 0;
+    result = 31 * result + (titel.get() != null ? titel.get().hashCode() : 0);
+    result = 31 * result + (startzeit.get() != null ? startzeit.get().hashCode() : 0);
+    result = 31 * result + (endzeit.get() != null ? endzeit.get().hashCode() : 0);
+    result = 31 * result + (kategorie.get() != null ? kategorie.get().hashCode() : 0);
+    result = 31 * result + (notiz.get() != null ? notiz.get().hashCode() : 0);
+    return result;
+  }
 }

@@ -20,40 +20,15 @@ import exceptions.ZeitenKollisionException;
 
 public class CSVAppointmentReaderTest {
 
-	CSVAppointmentReader csvAppointmentReader = new CSVAppointmentReader();
-
-	
-	@BeforeClass
-	public static void beforeClass() throws FormatException, WertebereichException, ZeitenKollisionException, StringIsEmptyException, IOException {
-		
-//		Appointment termin2 = new Appointment("21/06/2015", "Uni", "10:00", "18:00", "Lernen", "Das ist ein Test");
-//		
-//		List<Appointment> collection = new ArrayList();
-//		for(int i = 0; i < 5; i++) {
-//			collection.add(termin2);
-//		}
-//		
-//		csvAppointmentWriter.writeAppointment(collection, "Lernen", "::");
-		
-	}
+	private CSVAppointmentReader csvAppointmentReader = new CSVAppointmentReader();
 	
 	
 	@Test
 	public void testeReader() throws IOException, FormatException, WertebereichException, StringIsEmptyException, ZeitenKollisionException {
+    List<Appointment> expectedCollection = TestData.getTermin2(1);
+    List<Appointment> collection = csvAppointmentReader.readAppointment("Lernen", "::");
 		
-		Appointment termin2 = new Appointment("21/06/2015", "Uni", "10:00", "18:00", "Lernen", "Das ist ein Test");
-		
-		List<Appointment> collection = new ArrayList();
-		for(int i = 0; i < 5; i++) {
-			collection.add(termin2);
-		}
-		
-		
-		collection = csvAppointmentReader.readAppointment("Lernen", "::");
-		
-		assertEquals(collection, collection);
-		System.out.println(collection);
-		
+		assertEquals(expectedCollection, collection);
 	}
 
 }
