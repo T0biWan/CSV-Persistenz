@@ -322,6 +322,10 @@ public class Appointment {
 		
 	}
 
+	// Equals und Hash Code wurden hinzugefügt
+	// Sind generiert.
+	// Damit man zwei Listen vergleichen kann, muss man wissen, wann App einem anderen gleicht.
+	// Appointment ist gleich, wenn alle Attribute gleich sind
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

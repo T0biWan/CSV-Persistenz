@@ -15,6 +15,9 @@ import exceptions.StringIsEmptyException;
 import exceptions.WertebereichException;
 import exceptions.ZeitenKollisionException;
 
+/*
+ * Reader Klasse: Nimmt Textdatei, liest Inhalt und erstellt daraus ein Objekt.
+ */
 public class CSVAppointmentReader {
 	
 	//Helferklasse, die aus String-Dateinamen einen Pfad bastelt.
