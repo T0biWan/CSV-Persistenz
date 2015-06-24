@@ -21,6 +21,7 @@ public class CSVAppointmentWriterTest {
 
   private CSVAppointmentWriter csvAppointmentWriter = new CSVAppointmentWriter();
 
+  // temporärer Pfad
   private Path basePath = Paths.get(System.getProperty("java.io.tmpdir"));
 
   @Test
@@ -35,7 +36,7 @@ public class CSVAppointmentWriterTest {
   public void testeWriteAppointmentTerminCollection() throws Exception {
     List<Appointment> expectedCollection = TestData.getValidAppointments();
 
-    // Wieso an dieser Stelle kein try/catch, im Buffered aber schon?
+    
     csvAppointmentWriter.writeAppointment(expectedCollection, "WriteAppointmentTerminCollectionTest", "::");
     List<Appointment> appointments = csvAppointmentReader.readAppointment("WriteAppointmentTerminCollectionTest", "::");
     assertEquals(expectedCollection, appointments);
